@@ -1,0 +1,60 @@
+import pygame
+import sys
+import random
+# Initialize Pygame
+pygame.init()
+
+# Set up display
+width, height = 800, 600
+screen = pygame.display.set_mode((width, height))
+pygame.display.set_caption("Falling Circle Animation")
+
+# Set up colors
+black = (0, 0, 0)
+white = (255, 255, 255)
+
+
+circles_arr=[]
+for i in range(6):
+    c=random.random()
+# Set up circle properties
+    circle_radius = 20
+    circle_color = (255, 0, 0)
+    circle_x = width // (c*10)
+    circle_y = 0
+
+
+    circles_arr.append([screen, circle_color, circle_x, circle_y, circle_radius])
+# Set up clock for controlling the frame rate
+clock = pygame.time.Clock()
+
+#print("Hi")
+# Main game loop
+while True:
+    for i in range(6):
+        if circles_arr[i][3]<600:
+
+            circles_arr[i][3]+=5
+        
+        else:
+            circles_arr[i][2]=width // (c*10)
+            circles_arr[i][3]=0
+            # Update the display
+    screen.fill(white)
+
+    for i in range(6):
+        
+        pygame.draw.circle(screen, (0,0,255), (50,50),20)
+        #pygame.draw.circle(screen, circle_color, (100,50*i), circles_arr[i][4])
+        pygame.draw.circle(screen, circle_color, (circles_arr[i][2], circles_arr[i][3]), circles_arr[i][4])
+    
+    #pygame.display.update()
+    pygame.display.flip()
+    
+    # Cap the frame rate
+    clock.tick(60)      
+       
+    
+    
+        
+    
